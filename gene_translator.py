@@ -28,11 +28,21 @@ def translate_dna_to_protein(dna_sequence):
         protein += amino_acid
     return protein
 
+def validate_dna_sequence(dna_sequence):
+    valid_nucleotides = {'A', 'T', 'C', 'G'}
+    for nucleotide in dna_sequence:
+        if nucleotide not in valid_nucleotides:
+            return False
+    return True
+
 def main():
-    # Sample DNA sequence
     dna_sequence = input("Enter a DNA sequence: ").upper()
+    if not validate_dna_sequence(dna_sequence):
+        print("Invalid DNA sequence. Please enter a sequence containing only A, T, C, and G.")
+        return
     protein = translate_dna_to_protein(dna_sequence)
     print(f"The translated protein sequence is: {protein}")
 
 if __name__ == "__main__":
     main()
+
